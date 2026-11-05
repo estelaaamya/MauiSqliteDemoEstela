@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MauiSqliteDemoEstela.MainPage"
+    Title="CRUD de Clientes"
+    BackgroundColor="#F4F6FA">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="22" Spacing="15">
+
+            <Label
+                Text="Gestión de clientes"
+                FontSize="28"
+                FontAttributes="Bold"
+                TextColor="#263B60"
+                HorizontalOptions="Center"/>
+
+            <Label
+                Text="Registro de clientes con SQLite"
+                FontSize="14"
+                TextColor="Gray"
+                HorizontalOptions="Center"/>
+
+            <Frame
+                BackgroundColor="White"
+                CornerRadius="15"
+                Padding="18"
+                HasShadow="True">
+
+                <VerticalStackLayout Spacing="12">
+
+                    <Label
+                        Text="Datos del cliente"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#263B60"/>
+
+                    <Entry
+                        x:Name="NombreEntry"
+                        Placeholder="Nombre completo"/>
+
+                    <Entry
+                        x:Name="CorreoEntry"
+                        Placeholder="Correo electrónico"
+                        Keyboard="Email"/>
+
+                    <Entry
+                        x:Name="TelefonoEntry"
+                        Placeholder="Teléfono"
+                        Keyboard="Telephone"/>
+
+                    <Button
+                        Text="Guardar cliente"
+                        BackgroundColor="#4267A5"
+                        TextColor="White"
+                        CornerRadius="10"
+                        Clicked="Guardar_Clicked"/>
+
+                    <Button
+                        Text="Limpiar campos"
+                        BackgroundColor="#DCE5F2"
+                        TextColor="#263B60"
+                        CornerRadius="10"
+                        Clicked="Limpiar_Clicked"/>
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <Label
+                Text="Lista de clientes"
+                FontSize="21"
+                FontAttributes="Bold"
+                TextColor="#263B60"/>
+
+            <CollectionView
+                x:Name="ClientesCollection"
+                SelectionMode="Single"
+                SelectionChanged="Clientes_SelectionChanged">
+
+                <CollectionView.EmptyView>
+                    <Label
+                        Text="Todavía no hay clientes registrados."
+                        TextColor="Gray"
+                        HorizontalOptions="Center"
+                        Padding="15"/>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            BackgroundColor="White"
+                            CornerRadius="12"
+                            Padding="12"
+                            Margin="0,5"
+                            HasShadow="True">
+
+                            <VerticalStackLayout Spacing="5">
+                                <Label
+                                    Text="{Binding Nombre}"
+                                    FontSize="18"
+                                    FontAttributes="Bold"
+                                    TextColor="#263B60"/>
+
+                                <Label
+                                    Text="{Binding Correo}"
+                                    TextColor="Gray"/>
+
+                                <Label
+                                    Text="{Binding Telefono}"
+                                    TextColor="Gray"/>
+
+                                <Label
+                                    Text="{Binding Id, StringFormat='ID: {0}'}"
+                                    FontSize="12"
+                                    TextColor="#4267A5"/>
+                            </VerticalStackLayout>
+
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <HorizontalStackLayout Spacing="10">
+                <Button
+                    Text="Editar"
+                    BackgroundColor="#D69B45"
+                    TextColor="White"
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="Editar_Clicked"/>
+
+                <Button
+                    Text="Eliminar"
+                    BackgroundColor="#C94C4C"
+                    TextColor="White"
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="Eliminar_Clicked"/>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+
